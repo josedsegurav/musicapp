@@ -7,7 +7,7 @@ export async function redirectToAuthCodeFlow(client) {
     const params = new URLSearchParams();
     params.append("client_id", client);
     params.append("response_type", "code");
-    params.append("redirect_uri", "http://localhost:3000/");
+    params.append("redirect_uri", "https://musicapp-phi-drab.vercel.app/");
     params.append("scope", "user-read-private user-read-email user-top-read");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
@@ -42,7 +42,7 @@ export async function redirectToAuthCodeFlow(client) {
     params.append("client_id", client);
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://localhost:3000/");
+    params.append("redirect_uri", "https://musicapp-phi-drab.vercel.app/");
     params.append("code_verifier", verifier);
 
     const result = await fetch("https://accounts.spotify.com/api/token", {
@@ -57,7 +57,7 @@ export async function redirectToAuthCodeFlow(client) {
 
   export async function fetchTracks(token) {
     const res = await fetch(
-      `https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10`,
+      `https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=20`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
