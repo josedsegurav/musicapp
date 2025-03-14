@@ -28,6 +28,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
       </body>
     </html>
   );
