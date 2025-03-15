@@ -57,7 +57,7 @@ export async function redirectToAuthCodeFlow(client) {
 
   export async function fetchTracks(token) {
     const res = await fetch(
-      `https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=20`,
+      `https://api.spotify.com/v1/me/top/tracks?time_range=medium_term`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
