@@ -179,7 +179,7 @@ export default function MusicFetch() {
                       <AlertDialogDescription>You got {score} correct answers!</AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                    <a href={"https://musicapp-phi-drab.vercel.app/"}><AlertDialogAction>
+                    <a href={"./"}><AlertDialogAction>
                     Play Again
                       </AlertDialogAction></a>
                       <AlertDialogCancel>
@@ -206,7 +206,7 @@ export default function MusicFetch() {
                         value={track.id}
                         autoFocus="false"
                       >
-                        {track.artists.map((artist) => artist.name).join(", ")}
+                        {track.name}
                       </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
