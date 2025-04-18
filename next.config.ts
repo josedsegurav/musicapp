@@ -15,6 +15,14 @@ module.exports = {
     tailwindcss: {},
     autoprefixer: {},
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co', // Add this line to allow images from i.scdn.co
+      },
+    ],
+  },
 };
 
 export default nextConfig;

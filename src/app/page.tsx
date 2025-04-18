@@ -1,15 +1,68 @@
-import Image from "next/image";
-import MusicFetch from "../components/MusicFetch";
+"use client";
+
+import Link from "next/link";
+import * as SpotifyAPI from "../app/utils/spotifyApi";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div 
-    className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]"
-    
-    >
+  // const [topTracks, setTopTracks] = useState(null);
+  // const [playTracks, setPlayTracks] = useState(null);
+  // const [profileInfo, setProfileInfo] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <MusicFetch></MusicFetch>
+  const client = process.env.SP_ID;
+  useEffect(() => {
+    async function init() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code");
+
+        if (!code) {
+          SpotifyAPI.redirectToAuthCodeFlow(client);
+        } else {
+          if (!ignore) {
+         const token = await SpotifyAPI.getAccessToken(client, code);
+         return token;
+        }
+          // const profile = await SpotifyAPI.getProfile(accessToken);
+          // const tracks = await SpotifyAPI.fetchTracks(accessToken);
+          // setPlayTracks(tracks);
+          // let shuffledTracks = tracks.items
+          //   .map((value: any) => ({ value, sort: Math.random() }))
+          //   .sort((a: any, b: any) => a.sort - b.sort)
+          //   .map(({ value }: any) => value)
+          //   .slice(1, 11);
+            
+          //     setProfileInfo(profile);
+          //     setTopTracks(shuffledTracks);
+          //     setLoading(false);
+          //   }
+
+          
+      }  
+        
+      } catch (err: any) {
+        console.error("Error:", err);
+        setError(err.message);
+        setLoading(false);
+      }
+    }
+    let ignore = false;
+    init();
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
+  return (
+    <div className="">
+      {loading && <p className="text-orange-300">Loading your top tracks...</p>}
+      {error && <p className="text-red-500">Error: {error}</p>}
+      <main className="flex flex-col justify-center h-screen items-center">
+        <h1 className="text-orange-200">Top Tracks</h1>
+        <Link className="text-orange-200" href="/userhome">Profile</Link>
+        <Link className="text-orange-200" href="/toptracks">Play</Link>
       </main>
     </div>
   );
