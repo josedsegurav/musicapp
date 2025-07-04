@@ -9,7 +9,6 @@ export default function Home() {
   // const [playTracks, setPlayTracks] = useState(null);
   // const [profileInfo, setProfileInfo] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   const client = process.env.SP_ID;
   useEffect(() => {
@@ -33,19 +32,18 @@ export default function Home() {
           //   .sort((a: any, b: any) => a.sort - b.sort)
           //   .map(({ value }: any) => value)
           //   .slice(1, 11);
-            
+
           //     setProfileInfo(profile);
           //     setTopTracks(shuffledTracks);
           //     setLoading(false);
           //   }
 
-          
-      }  
-        
+
+      }
+
       } catch (err: any) {
         console.error("Error:", err);
         setError(err.message);
-        setLoading(false);
       }
     }
     let ignore = false;
@@ -57,7 +55,6 @@ export default function Home() {
 
   return (
     <div className="">
-      {loading && <p className="text-orange-300">Loading your top tracks...</p>}
       {error && <p className="text-red-500">Error: {error}</p>}
       <main className="flex flex-col justify-center h-screen items-center">
         <h1 className="text-orange-200">Top Tracks</h1>
